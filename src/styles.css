@@ -1,0 +1,86 @@
+body,
+html {
+  box-sizing: border-box;
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.container {
+  font-family: sans-serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.box {
+  border: 1px solid rgba(0, 0, 0, 0.146);
+  padding: 40px 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  width: 300px;
+}
+.label {
+  text-align: left;
+}
+.title {
+  color: #1677ff;
+}
+.login {
+  color: #1677ff;
+  cursor: pointer;
+}
+.primary-btn {
+  padding: 8px 16px;
+  background-color: #1677ff;
+  color: white;
+  border: 1px solid transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.primary-btn:hover {
+  background-color: #1677ffc3;
+}
+input {
+  margin: 20px 0;
+  padding: 10px 0;
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.146);
+  border-radius: 4px;
+}
+input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+.label {
+  text-align: left;
+}
+.greet {
+  font-size: 20px;
+  color: #ee7214;
+}
+.hey {
+  color: black;
+}
+.user {
+  color: #1677ff;
+}
+.error {
+  display: none;
+  font-weight: 500;
+  color: red;
+  padding: 12px;
+  text-align: center;
+}
+
