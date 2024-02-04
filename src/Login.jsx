@@ -1,38 +1,37 @@
 import React, { useState } from "react";
 import "./styles.css";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate()
   const handleLogin = (event) => {
     event.preventDefault();
-    const email = document.querySelector(".input-email").value;
-    const pwd = document.querySelector(".input-pwd").value;
-    const error = document.querySelector(".error");
-    if (email === "" || pwd === "") {
-      error.style.display = "block";
+
+    if ( !username || !password ) {
+      setError("Unable to login")
       return;
-    } else {
-      error.style.display = "none";
     }
+    setError("")
+    console.log("Logging in with:", username, password);
     onLogin(username, password);
-    setIsLoggedIn(true)
+    navigate("/dashboard")
   };
   return (
     <div className="container">
       <h1 className="title">Login</h1>
       <div className="box">
         <form>
-          <p className="error">Error: Invalid username or password</p>
+          {error && <p className="error">{error}</p>}
           <p className="label">Username</p>
           <input
             className="input-email"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            
           />
           <br />
           <p className="label">Password</p>

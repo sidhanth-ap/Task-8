@@ -11,46 +11,52 @@ import Dashboard from "./Dashboard";
 import "./styles.css";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate()
 
   const handleLogin = (email, pwd) => {
     if (email && pwd) {
       setIsLoggedIn(true);
       setUsername(email);
-      navigate("/dashboard");
+      console.log("Authentication successful");
+      // navigate("/dashboard")
+    } else {
+      console.log("Authentication failed");
     }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername("");
-    navigate("/");
   };
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Login
-              onLogin={handleLogin}
-            />
-          }
-        ></Route>
-        <Route
-          path="/dashboard"
-          element={
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Login
+            onLogin={handleLogin}
+          />
+        }
+      ></Route>
+      <Route
+        path="/dashboard"
+        element={
+          isLoggedIn ? (
             <Dashboard
               user={username}
               onLogout={handleLogout}
             />
-          }
-        ></Route>
-      </Routes>
-    </BrowserRouter>
+          ) : (
+            <Navigate to="/" />
+          )
+        }
+      ></Route>
+    </Routes>
+  </BrowserRouter>
   );
 };
 

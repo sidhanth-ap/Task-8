@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./styles.css";
-import Login from "./Login";
 import { Link, Navigate } from "react-router-dom";
 
 const Dashboard = ({ user, onLogout }) => {
+  console.log("Dashboard rendering...");
   let greet;
   const d = new Date();
   const hours = d.getHours();
@@ -16,27 +16,26 @@ const Dashboard = ({ user, onLogout }) => {
   } else {
     greet = "Good Night";
   }
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
+  // const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const handleLogout = () => {
+    onLogout()
+    // setIsLoggedIn(false)
+  }
   return (
     <div>
-      {isLoggedIn ? (
-        <div className="container">
-          <h1 className="title">Dashboard</h1>
-          <div className="box">
-            <h2 className="greet">{greet}</h2>
-            <h2 className="user">
-              <span className="hey">Hey 👋 </span>
-              {user}
-            </h2>
-            <button className="primary-btn" onClick={() => {setIsLoggedIn(false); onLogout();}}>
-              Logout
-            </button>
-          </div>
+      <div className="container">
+        <h1 className="title">Dashboard</h1>
+        <div className="box">
+          <h2 className="greet">{greet}</h2>
+          <h2 className="user">
+            <span className="hey">Hey 👋 </span>
+            {user}
+          </h2>
+          <button className="primary-btn" onClick={handleLogout}>
+            Logout
+          </button>
         </div>
-      ) : (
-        <Navigate to="/" />
-      )}
+      </div>
     </div>
   );
 };
