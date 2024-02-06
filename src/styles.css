@@ -16,6 +16,12 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.box-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 500px;
 }
 .label {
@@ -65,14 +71,23 @@ input[type="password"] {
   text-align: left;
 }
 .greet {
-  font-size: 20px;
+  font-size: 18px;
   color: #ee7214;
+  text-align: left;
 }
 .hey {
   color: black;
 }
 .user {
   color: #1677ff;
+  font-size: 50px;
+  text-transform: capitalize;
+  text-wrap: wrap;
+}
+.box-border {
+  border: 1px solid rgba(0, 0, 0, 0.146);
+  border-radius: 4px;
+  padding: 36px 50px;
 }
 .error {
   font-weight: 500;
