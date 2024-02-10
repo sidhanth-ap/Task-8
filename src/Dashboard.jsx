@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { useParams } from "react-router-dom";
 
 const Dashboard = ({ user, onLogout }) => {
+  const { username } = useParams()
   console.log("Dashboard rendering...");
   let greet;
   const d = new Date();
@@ -15,6 +17,12 @@ const Dashboard = ({ user, onLogout }) => {
   } else {
     greet = "💤 Good Night";
   }
+  const currentTime = new Date()
+  const hour = currentTime.getHours().toString().padStart(2, "0")
+  const minutes = currentTime.getMinutes().toString().padStart(2, "0")
+  const ampm = hours >= 12 ? "PM" : "AM"
+  const formatedHours = hour % 12 || 12
+  const formatedTime = `${formatedHours}:${minutes} ${ampm}`
   const handleLogout = () => {
     onLogout()
   }
@@ -24,7 +32,7 @@ const Dashboard = ({ user, onLogout }) => {
       <div className="container">
         <h1 className="title">Dashboard</h1>
         <div className="box box-border">
-          <h2 className="greet">{greet}</h2>
+          <h2 className="greet">{greet}, {formatedTime}</h2>
           <h2 className="user">
             <span className="hey">👋 Hey,  </span>
             {user}

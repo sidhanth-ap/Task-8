@@ -8,16 +8,21 @@ import {
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import "./styles.css";
+import SignupForm from "./SignupForm";
+import NightMode from "./NightMode";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const createUserObject = (email) => {
+    return {
+      isLoggedIn: true,
+      username: email,
+    }
+  }
   const handleLogin = (email, pwd) => {
     if (email && pwd) {
-      const user = {
-        isLoggedIn: true,
-        username: email,
-      }
+      const user = createUserObject(email)
       setIsLoggedIn(true);
       localStorage.setItem("user", JSON.stringify(user))
       setUsername(email);
@@ -26,7 +31,12 @@ const App = () => {
       console.log("Authentication failed");
     }
   };
-
+  const handleSignUp = (email, pwd) => {
+    const user = createUserObject(email)
+    setIsLoggedIn(true);
+    localStorage.setItem("user", JSON.stringify(user))
+    setUsername(email);
+  }
   const handleLogout = () => {
     setIsLoggedIn(false);
     localStorage.removeItem("user")
@@ -50,24 +60,45 @@ const App = () => {
 
   return (
     <BrowserRouter>
+    <NightMode />
       <Routes>
+        <Route
+          path="*"
+          element={
+            isLoggedIn ? (
+              <Navigate to={"/dashboard"} replace={false} />
+            ) : (
+              <Login onLogin={handleLogin}></Login>
+            )
+          }
+        ></Route>
         <Route
           path="/"
           element={
             isLoggedIn ? (
-              <Navigate to="/dashboard" replace={false}/>
+              <Navigate to="/dashboard" replace={false} />
             ) : (
               <Login onLogin={handleLogin} />
             )
           }
         ></Route>
         <Route
-          path="/dashboard"
+          path="/signup"
+          element={
+            isLoggedIn ? (
+              <Navigate to="/dashboard" replace={false} />
+            ) : (
+              <SignupForm onSignup={handleSignUp} />
+            )
+          }
+        ></Route>
+        <Route
+          path="/dashboard/:username"
           element={
             isLoggedIn ? (
               <Dashboard user={username} onLogout={handleLogout} />
             ) : (
-              <Navigate to="/" replace={false}/>
+              <Navigate to="/" replace={true} />
             )
           }
         ></Route>

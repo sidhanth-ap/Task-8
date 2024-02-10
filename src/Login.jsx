@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./styles.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import SignupForm from "./SignupForm";
 
 const Login = ({ onLogin }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showSignUpForm, setShowSignUpForm] = useState(false)
   const navigate = useNavigate()
   const handleLogin = (event) => {
     event.preventDefault();
@@ -18,35 +20,54 @@ const Login = ({ onLogin }) => {
     setError("")
     console.log("Logging in with:", username, password);
     onLogin(username, password);
-    navigate("/dashboard", { replace : true })
+    navigate(`/dashboard/${username}`, { replace : false })
   };
+  const handleSignupClick = () => {
+    setShowSignUpForm(true)
+  }
   return (
     <div className="container">
       <h1 className="title">Login</h1>
       <div className="card">
         <div className="box-1">
-          <form>
-            {error && <p className="error">{error}</p>}
-            <p className="label">Username</p>
-            <input
-              className="input-email"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <br />
-            <p className="label">Password</p>
-            <input
-              className="input-pwd"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <br />
-            <button className="primary-btn" type="button" onClick={handleLogin}>
-              Login
-            </button>
-          </form>
+          {showSignUpForm ? (
+            <SignupForm />
+          ) : (
+            <form>
+              {error && <p className="error">{error}</p>}
+              <p className="label">Username</p>
+              <input
+                className="input-email"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="weeknd"
+              />
+              <br />
+              <p className="label">Password</p>
+              <input
+                className="input-pwd"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="0000000"
+              />
+              <br />
+              <button
+                className="primary-btn"
+                type="button"
+                onClick={handleLogin}
+              >
+                Login
+              </button>
+              <p>
+                Don't have an account ?{" "}
+                <Link to={"/signup"} className="singup-link" onClick={handleSignupClick}>
+                  Sign up
+                </Link>
+              </p>
+            </form>
+          )}
         </div>
       </div>
     </div>
