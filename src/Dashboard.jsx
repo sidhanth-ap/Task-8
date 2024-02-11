@@ -30,7 +30,7 @@ const Dashboard = ({ user, onLogout }) => {
   return (
     <div>
       <div className="container">
-        <h1 className="title">Dashboard</h1>
+        <h1 className="title">{username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() + "'s"} Dashboard</h1>
         <div className="box box-border">
           <h2 className="greet">{greet}, {formatedTime}</h2>
           <h2 className="user">
