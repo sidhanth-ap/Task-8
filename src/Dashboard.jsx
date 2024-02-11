@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./styles.css";
-import { useParams } from "react-router-dom";
 
 const Dashboard = ({ user, onLogout }) => {
-  const { username } = useParams()
   console.log("Dashboard rendering...");
   let greet;
   const d = new Date();
@@ -30,7 +28,7 @@ const Dashboard = ({ user, onLogout }) => {
   return (
     <div>
       <div className="container">
-        <h1 className="title">{username.charAt(0).toUpperCase() + username.slice(1).toLowerCase() + "'s"} Dashboard</h1>
+        <h1 className="title">{user.charAt(0).toUpperCase() + user.slice(1).toLowerCase() + "'s"} Dashboard</h1>
         <div className="box box-border">
           <h2 className="greet">{greet}, {formatedTime}</h2>
           <h2 className="user">

@@ -93,7 +93,7 @@ const App = () => {
           }
         ></Route>
         <Route
-          path="/dashboard/:username"
+          path="/dashboard"
           element={
             isLoggedIn ? (
               <Dashboard user={username} onLogout={handleLogout} />
