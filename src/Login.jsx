@@ -20,7 +20,7 @@ const Login = ({ onLogin }) => {
     setError("")
     console.log("Logging in with:", username, password);
     onLogin(username, password);
-    navigate(`/dashboard/${username}`, { replace : false })
+    navigate(`/dashboard/${username}`, { replace : true })
   };
   const handleSignupClick = () => {
     setShowSignUpForm(true)
@@ -41,7 +41,6 @@ const Login = ({ onLogin }) => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="weeknd"
               />
               <br />
               <p className="label">Password</p>
@@ -50,7 +49,6 @@ const Login = ({ onLogin }) => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="0000000"
               />
               <br />
               <button

@@ -35,7 +35,7 @@ const SignupForm = ({ onSignup }) => {
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="weeknd@mail.com"
+                
               />
               <br />
               <p className="label">Username</p>
@@ -44,7 +44,7 @@ const SignupForm = ({ onSignup }) => {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="weeknd"
+                
               />
               <br />
               <p className="label">Password</p>
@@ -53,7 +53,7 @@ const SignupForm = ({ onSignup }) => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="0000000"
+                
               />
               <br />
               <p className="label">Confirm Password</p>
@@ -62,7 +62,7 @@ const SignupForm = ({ onSignup }) => {
                 type="password"
                 value={cpassword}
                 onChange={(e) => setCPassword(e.target.value)}
-                placeholder="0000000"
+                
               />
               <br />
               <button
